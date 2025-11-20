@@ -7,16 +7,34 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  color: #f0f3f5;
+}
+
+input{
+  padding: 5px 10px;
+  outline: none;
+  box-shadow: inset 0px 0px 10px #dddddd52;
+  border-radius: 5px;
+}
+input[type="checkbox"] {
+  border: 2px solid #2a13f5;
+  width: 25px;
+  height: 25px;
+  accent-color: #2a13f5;
+}
+input[type="checkbox"]:checked {
+  width: 25px;
+  height: 25px;
 }
 
 button {
-  border-radius: 8px;
+  border-radius: 5px;
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
+  padding: 5px 10px;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #2a13f5;
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -26,5 +44,8 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+tr, td{
+  padding: 2px;
 }
 
