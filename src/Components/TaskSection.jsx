@@ -1,8 +1,13 @@
 
 import TaskItem from "./TaskItem";
-const TaskSection = () => {
+const TaskSection = ({tasks, onUpdateTask, onDelete}) => {
+    if(tasks.length <1){
+        return <>
+            <h2 className="text-red-400">No task, Please Add Task</h2>
+        </>
+    }
     return (
-        <table class="table-auto  w-full">
+        <table className="table-auto  w-full">
           <thead>
             <tr className="">
               <th className="text-start font-semibold">Complete</th>
@@ -12,8 +17,14 @@ const TaskSection = () => {
             </tr>
           </thead>
           <tbody>
-            <TaskItem />
-            <TaskItem />
+            {
+                tasks.map(task => <TaskItem 
+                        key={task.id} 
+                        onUpdateTask={onUpdateTask} 
+                        onDelete={onDelete}
+                        task={task}
+                    />)
+            }
           </tbody>
         </table>
     );
