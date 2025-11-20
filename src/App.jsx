@@ -1,38 +1,32 @@
-import { useState } from "react";
+import { useReducer } from "react";
 import AddTask from "./Components/AddTask";
 import TaskSection from "./Components/TaskSection";
-import { generateId, initialTasks } from "./utils";
+import { initialTasks } from "./utils";
+import { tasksReducer } from "./tasksReducer";
 
 const App = () => {
-  const [tasks, setTasks] = useState(initialTasks.length === 0 ? []: initialTasks)
-  
+  // const [tasks, setTasks] = useState(initialTasks)
+  const [tasks, dispatch] = useReducer(tasksReducer, initialTasks)
   // handlers 
   const handleAddTask = (text) =>{
-    const newTask = {
-      id: generateId(tasks) | 0,
-      text: text,
-      done: false
-    }
-    setTasks([
-      ...tasks,
-      newTask
-    ])
+    dispatch({
+      type: "adding",
+      text,
+    })
   }
 
   const handleUpdateTask = (task) =>{
-    const UpdateTask = tasks.map(t => {
-      if(t.id === task.id) {
-        return task
-      } else {
-        return t
-      }
+    dispatch({
+      type: "updating",
+      task
     })
-    setTasks(UpdateTask)
   }
 
   const handleDelete = (id) =>{
-    const UpdateTask = tasks.filter(t => t.id !== id)
-    setTasks(UpdateTask)
+    dispatch({
+      type: "deleting",
+      id
+    })
   }
 
   return (
